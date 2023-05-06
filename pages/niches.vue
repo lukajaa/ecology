@@ -1,67 +1,90 @@
 <template>
-    <div class="bottom-hue">
-    <div class="min-h-screen h-full px-10 pb-10 font-mono text-slate-800 text-center hue">
-        <div class="w-9/12 mx-auto">
-            <p class="text-7xl font-bold pt-48">Competition and Ecological Niches</p>
-            <p class="text-xl mt-4">Interspecific competition is competition over a certain resource (often food) that forces organisms into niches</p>
-        
+    <div class="leading-normal tracking-normal text-gray-800 gradient">
+    <section class="bg-white border-b py-8">
+      <div class="container max-w-5xl mx-auto m-8">
+        <p class="w-full my-2 text-5xl font-bold leading-tight text-center">
+            Competition and Ecological Niches
+        </p>
+        <div class="w-full mb-4">
+          <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <div class="flex flex-wrap">
+          <div class="w-5/6 sm:w-1/2 p-6">
+            <p class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                What is a Niche?
+            </p>
+            <p class="text-gray-600 mb-8">
+                An ecological niche is the role and position a species has in its environment. ie. what it eats, what eats it, and how it behaves.
+            </p>
+            <p class="text-xl text-gray-800 font-bold leading-none mb-3">
+                Competitive Exclusion
+            </p>
+            <p class="text-gray-600 mb-8">
+                Two organisms cannot occupy the same niche because they will compete for the same resources and one will eventually die out.
+            </p>
+          </div>
+          <div class="w-full sm:w-1/2 p-6">
+            <img src="~/assets/svgs/niche_1.svg" class="max-h-48 mx-auto" />
+          </div>
+        </div>
+        <div class="container px-6 py-10 mx-auto">
+        <p class="text-4xl text-center font-bold">Types of Niche</p>
 
-            <p class="text-3xl mt-8 font-semibold">What is a Niche?</p>
-            <div class="flex flex-row shadow rounded-lg bg-white">
-                <div class="flex flex-col w-3/12">
-                    <img src="http://homesfeed.com/wp-content/uploads/2015/08/Huge-single-wall-niche.jpg" class="rounded-lg"/>
-                </div>
-                <div class="flex flex-col w-9/12 p-8">
-                    <div class="flex flex-row text-lg font-semibold">
-                        What is a Niche?
-                    </div>
-                    <div class="flex flex-row text-md caption">
-                        An ecological niche is the role and position a species has in its environment. ie. what it eats, what eats it, and how it behaves. Two organisms cannot occupy the same niche because they will compete for the same resources and one will eventually die out.
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 xl:mt-12 xl:gap-12">
+            <div class="w-full ">
+                <img class="w-full h-64 rounded-lg" src="~/assets/svgs/moon.svg" />
+                
+                <p class="text-2xl text-center font-bold rounded-lg">Time</p>
+                <p class="text-lg text-center rounded-lg">For example, nocturnal vs diurnal animals</p>
             </div>
-            <!-- infographic card explaining what a niche is -->
 
-        
-            <p class="text-3xl mt-8">Ecological Niche</p>
-            <div class="text-left">
-                <p class="text-md mt-2">When two organisms fight for the same limited food source, if one has even a slight reproductive edge, it will kill out the other species.</p>
-                <p class="text-lg text-center mt-1">Possible Niches Include</p>
-                <p class="text-md mt-1">- Time (nocturnal / diurnal)</p>
-                <p class="text-md mt-1">- Place (higher up / lower down)</p>
-                <p class="text-lg text-center mt-1">Fundamental Niche</p>
-                <p class="text-md mt-1">Fundamental niche is the niche is the niche that an animal would occupy without any competition (what it is made to do)</p>
-                <p class="text-lg text-center mt-1">Realized Niche</p>
-                <p class="text-md mt-1">Realized niche is the niche that the organism actually occupies due to competition or other factors</p>
+            <div class="w-full ">
+                <img class="w-full h-64 rounded-lg" src="~/assets/svgs/mountain.svg" />
+                
+                <p class="text-2xl text-center font-bold rounded-lg">Place</p>
+                <p class="text-lg text-center rounded-lg">For example, animals who live on treetops vs on the ground</p>
             </div>
 
-            <p class="text-3xl mt-8">Character Displacement</p>
-            <p class="text-md mt-2">Character displacement is the phenomenon that species separated can be mores similar than overlapping species</p>
-
-            <p id="foodCount">Food: 100</p>
-            <p id="deerCount">Deer: 0</p>
-            <canvas id="canvas" width="600" height="600" style="border-color: black;border-width:1px;border-style:solid"></canvas>
+            <div class="w-full ">
+                <img class="w-full h-64 rounded-lg" src="~/assets/svgs/food.svg" />
+                
+                <p class="text-2xl text-center font-bold rounded-lg">Food</p>
+                <p class="text-lg text-center rounded-lg">For example, herbivores vs carnivores</p>
+            </div>
         </div>
     </div>
+    <div class="flex flex-row mt-12 outline-green-600 outline-1 outline p-12 rounded-lg">
+        <div class="flex flex-col w-6/12 px-4">
+            <p class="text-3xl text-center font-bold rounded-lg">Fundamental Niche</p>
+            <p class="text-lg text-center rounded-lg mt-4">A fundamental niche is the niche that an animal would occupy without any competition (what it is made to do)</p>
+        </div>
+        <div class="flex flex-col w-6/12 px-4">
+            <p class="text-3xl text-center font-bold rounded-lg">Realized Niche</p>
+            <p class="text-lg text-center rounded-lg mt-4">A realized niche is the niche that the organism actually occupies due to competition or other factors</p>
+        </div>
+    </div>
+    <p class="text-4xl text-center mt-12 font-bold">Simulation</p>
+
+    <p class="text-center text-lg mt-4 mb-8">Food: {{ foodCount }} | Deer1: {{ deer1Count }} Deer2: {{ deer2Count }}</p>
+    <canvas id="canvas" width="600" height="600" class="outline outline-black outline-1 mx-auto"></canvas>
+      </div>
+    </section>
+    <BackButton />
     </div>
 </template>
 
 <style scoped>
 .gradient {
-    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-}
-.hue-temp {
-  box-shadow: inset 0px 100px 100px -50px rgba(255, 0, 0, 0.1);
-  background: linear-gradient(180deg, rgba(255, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
-}
-.bottom-hue-temp {
-  box-shadow: inset 0px -100px 100px -50px rgba(255, 0, 0, 0.1);
-  background: linear-gradient(0, rgba(255, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
+  background: linear-gradient(90deg, #16a34a 0%, #2dd4bf 100%);
 }
 </style>
 
 <script setup>
-/*
+
+const foodCount = ref(100);
+const deer1Count = ref(10);
+const deer2Count = ref(10);
+
 var ctx;
 
 onMounted(() => {
@@ -74,9 +97,10 @@ class Deer {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        this.energy = 5;
+        this.energy = 0;
         this.target = null;
         this.type = type;
+        this.time_alive = 0;
     }
     draw() {
         if (this.type == 1) {
@@ -84,13 +108,14 @@ class Deer {
         } else {
             ctx.fillStyle = "blue";
         }
-        ctx.fillRect(this.x, this.y, 5, 5);
+        ctx.fillRect(this.x, this.y, 10, 10);
 
-
+        /*
         ctx.beginPath();
         ctx.arc(this.x + 2.5, this.y + 2.5, 100, 0, 2 * Math.PI);
         ctx.stroke();
-    
+        */
+        
     }
     sense() {
         var closest = null;
@@ -125,16 +150,23 @@ class Deer {
         }
     }
     move() {
-        var radians = this.direction * Math.PI / 180;
-        this.x += Math.cos(radians);
-        this.y += Math.sin(radians);
+        this.time_alive += 1;
 
-        this.energy -= 0.1;
+        var radians = this.direction * Math.PI / 180;
+        if (this.type == 1) {
+            this.x += Math.cos(radians);
+            this.y += Math.sin(radians);
+        } else {
+            this.x += Math.cos(radians);
+            this.y += Math.sin(radians);
+        }
+
+        if (this.time_alive > 100) {this.energy -= 0.1;}
         if (this.energy < 0) {
             deer.splice(deer.indexOf(this), 1);
         }
 
-        if (this.x < 0 || this.x > 595 || this.y < 0 || this.y > 595) {
+        if (this.x < 0 || this.x > 590 || this.y < 0 || this.y > 590) {
             this.direction = this.direction + Math.random() * 120 + 120;
             if (this.direction > 360) {
                 this.direction -= 360;
@@ -146,7 +178,7 @@ class Deer {
             var dx = this.target.x - this.x;
             var dy = this.target.y - this.y;
             var distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 5) {
+            if (distance < 10) {
                 food.splice(food.indexOf(this.target), 1);
                 this.energy += 3;
                 this.target = null;
@@ -155,13 +187,13 @@ class Deer {
     }
     birth() {
         if (this.energy >= 9 && this.type == 1) {
-            this.energy -= 9;
+            this.energy -= 4.5;
             var baby_x = this.x + Math.random() * 10 - 5;
             var baby_y = this.y + Math.random() * 10 - 5;
             deer.push(new Deer(baby_x, baby_y, Math.random() * 360, this.type));
         } 
         if (this.energy >= 10 && this.type == 2) {
-            this.energy -= 10;
+            this.energy -= 5;
             var baby_x = this.x + Math.random() * 10 - 5;
             var baby_y = this.y + Math.random() * 10 - 5;
             deer.push(new Deer(baby_x, baby_y, Math.random() * 360, this.type));
@@ -192,7 +224,7 @@ setInterval(function() {
     ctx.fillRect(0, 0, 600, 600);
     for (var i = 0; i < food.length; i++) {
         ctx.fillStyle = "green";
-        ctx.fillRect(food[i].x, food[i].y, 2, 2);
+        ctx.fillRect(food[i].x, food[i].y, 4, 4);
     }
 
     for (var i = 0; i < deer.length; i++) {
@@ -207,6 +239,17 @@ setInterval(function() {
         x: Math.random() * 580 + 10,
         y: Math.random() * 580 + 10
     });
+
+    foodCount.value = food.length;
+    deer1Count.value = 0;
+    deer2Count.value = 0;
+    for (var i = 0; i < deer.length; i++) {
+        if (deer[i].type == 1) {
+            deer1Count.value++;
+        } else {
+            deer2Count.value++;
+        }
+    }
 }, 10);
-*/
+
 </script>

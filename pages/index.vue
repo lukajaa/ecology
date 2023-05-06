@@ -1,7 +1,7 @@
 <template>
   <div class="leading-normal tracking-normal text-white gradient">
     <!--Hero-->
-    <div class="pt-24">
+    <div class="pt-24 pb-4">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left pb-8">
@@ -16,8 +16,8 @@
           </button>
         </div>
         <!--Right Col-->
-        <div class="w-full md:w-3/5 text-center">
-          <img class="w-full md:w-4/5 z-50" src="/images/hero.png" />
+        <div class="w-full md:w-3/5">
+          <img class="w-full md:w-3/5 z-50 mx-auto" src="~/assets/svgs/welcome.svg" />
         </div>
       </div>
     </div>
@@ -72,18 +72,6 @@
             </a>
           </div>
         </NuxtLink>
-        <NuxtLink class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" to="/disturbance">
-          <div class="flex-1 bg-white rounded overflow-hidden shadow py-4 transition ease-in-out hover:scale-105">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Disturbance
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                Explore how organisms find their niches in a competitive ecosystem.
-              </p>
-            </a>
-          </div>
-        </NuxtLink>
         <NuxtLink class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" to="/diversity">
           <div class="flex-1 bg-white rounded overflow-hidden shadow py-4 transition ease-in-out hover:scale-105">
             <a href="#" class="flex flex-wrap no-underline hover:no-underline">
@@ -116,18 +104,6 @@
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
                 Explore the fundamentals of how different organisms interact with each other.
-              </p>
-            </a>
-          </div>
-        </NuxtLink>
-        <NuxtLink class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" to="/pathogens">
-          <div class="flex-1 bg-white rounded overflow-hidden shadow py-4 transition ease-in-out hover:scale-105">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Pathogens
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                Explore how organisms find their niches in a competitive ecosystem.
               </p>
             </a>
           </div>
@@ -169,23 +145,9 @@
       </g>
     </svg>
     <section class="container mx-auto text-center py-6">
-      <h3 class="my-4 text-xl leading-tight">
-        Created by Lucas Chang. Made with Tailwind CSS.
+      <h3 class="my-4 text-lg leading-tight">
+        Created by Lucas Chang | Sources
       </h3>
     </section>
 </div>
 </template>
-
-<style scoped>
-.gradient {
-        background: linear-gradient(90deg, #16a34a 0%, #2dd4bf 100%);
-      }
-.hue {
-  box-shadow: inset 0px 100px 100px -50px rgba(0, 255, 0, 0.2);
-  background: linear-gradient(180deg, rgba(0, 255, 0, 0.2) 0%, rgba(0, 0, 0, 0) 50%);
-}
-.bottom-hue {
-  box-shadow: inset 0px -100px 100px -50px rgba(0, 255, 0, 0.2);
-  background: linear-gradient(0, rgba(0, 255, 0, 0.2) 0%, rgba(0, 0, 0, 0) 50%);
-}
-</style>
