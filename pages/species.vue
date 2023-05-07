@@ -54,17 +54,17 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 xl:mt-12 xl:gap-12">
             <div class="w-full ">
-                <img class="w-full h-64 rounded-lg" src="~/assets/svgs/moon.svg" />
+              <Icon name="fa6-solid:otter" class="w-full h-48 rounded-lg" />
                 
                 <p class="text-2xl text-center font-bold rounded-lg mt-8">Sea Otters</p>
-                <p class="text-md text-center rounded-lg font-normal">Sea otters eat sea urchins which eat kelp. If sea otters are absent, then kelp forests collapse, causing a chain reaction of disturbance</p>
+                <p class="text-md text-center rounded-lg font-normal text-gray-600">Sea otters eat sea urchins which eat kelp. If sea otters are absent, then kelp forests collapse, causing a chain reaction of disturbance</p>
             </div>
 
             <div class="w-full ">
-                <img class="w-full h-64 rounded-lg" src="~/assets/svgs/mountain.svg" />
+                <Icon name="fluent-emoji-high-contrast:beaver" class="w-full h-48 rounded-lg" />
                 
                 <p class="text-2xl text-center font-bold rounded-lg mt-8">Beavers</p>
-                <p class="text-lg text-center rounded-lg">For example, animals who live on treetops vs on the ground</p>
+                <p class="text-md text-center rounded-lg text-gray-600">Beavers are ecosystem engineers who alter the environment by building dams and thus have a large impact on other species in the ecosystem</p>
             </div>
         </div>
       </div>

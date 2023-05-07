@@ -55,7 +55,7 @@
                 Competition and Niches
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore how organisms find their niches in a competitive ecosystem.
+                Explore how organisms find their niches in a competitive ecosystem
               </p>
             </a>
           </div>
@@ -67,7 +67,7 @@
                 Predation and Symbiosis
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore the fundamentals of how different organisms interact with each other.
+                Explore the fundamentals of how different organisms interact with each other
               </p>
             </a>
           </div>
@@ -79,7 +79,7 @@
                 Species Diversity
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore how organisms find their niches in a competitive ecosystem.
+                Explore how diversity is calculated and how it can strengthen an ecosystem
               </p>
             </a>
           </div>
@@ -91,7 +91,7 @@
                 Species with a Large Impact
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore the fundamentals of how different organisms interact with each other.
+                Explore which species have the largest impact on their ecosystems
               </p>
             </a>
           </div>
@@ -103,19 +103,19 @@
                 Top/Down and Bottom/Up Controls
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore the fundamentals of how different organisms interact with each other.
+                Explore how certain species can control the entire ecosystem
               </p>
             </a>
           </div>
         </NuxtLink>
-        <NuxtLink class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" to="/biogeography">
+        <NuxtLink class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" to="/disturbance">
           <div class="flex-1 bg-white rounded overflow-hidden shadow py-4 transition ease-in-out hover:scale-105">
             <a href="#" class="flex flex-wrap no-underline hover:no-underline">
               <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Biogeographic Factors
+                Disturbance
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
-                Explore the fundamentals of how different organisms interact with each other.
+                Explore how both natural and human-made disturbances can affect an ecosystem
               </p>
             </a>
           </div>
