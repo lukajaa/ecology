@@ -65,8 +65,41 @@
     </div>
     <p class="text-4xl text-center mt-12 font-bold">Simulation</p>
 
-    <p class="text-center text-lg mt-4 mb-8">Food: {{ foodCount }} | Deer1: {{ deer1Count }} Deer2: {{ deer2Count }}</p>
-    <canvas id="canvas" width="600" height="600" class="outline outline-black outline-1 mx-auto"></canvas>
+
+    <div v-if="!started" class="flex flex-wrap">
+        <div class="flex flex-col w-1/3 flex-grow">
+            <p class="text-center">Fish 1 Speed Multiplier</p>
+            <input v-model="fish1Speed" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+        <div class="flex flex-col w-1/3 flex-grow">
+            <p class="text-center">Fish 2 Speed Multiplier</p>
+            <input v-model="fish2Speed" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+        <div class="flex flex-col w-1/3 flex-grow">
+            <p class="text-center">Fish 1 Energy Consumption Multiplier</p>
+            <input v-model="fish1EnergyConsumption" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+        <div class="flex flex-col w-1/3 flex-grow">
+            <p class="text-center">Fish 2 Energy Consumption Multiplier</p>
+            <input v-model="fish2EnergyConsumption" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+        <div class="flex flex-col w-1/3 flex-grow">
+            <p class="text-center">Fish 1 Reproduction Rate Multiplier</p>
+            <input v-model="fish1ReproductionRate" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+        <div class="flex flex-col w-1/3">
+            <p class="text-center">Fish 2 Reproduction Rate Multiplier</p>
+            <input v-model="fish2ReproductionRate" type="number" class="text-center w-full border border-gray-400 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500" label="Number of fish" />
+        </div>
+    </div>
+    <button v-if="!started" @click="started=true; animate()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-12 text-center w-full">
+        Start Simulation
+    </button>
+    <div v-if="started">
+        <p class="text-lg text-center">Food: {{ food.length }} | Fish1: {{ fish1.length }} | Fish2: {{ fish2.length }}</p>
+        <p class="text-lg text-center">Ticks: {{ ticksRun }}</p>
+    </div>
+    <canvas id="canvas" width="600" height="600" class="outline outline-black outline-1 rounded-lg shadow mx-auto"></canvas>
       </div>
     </section>
     <BackButton />
@@ -80,11 +113,6 @@
 </style>
 
 <script setup>
-
-const foodCount = ref(100);
-const deer1Count = ref(10);
-const deer2Count = ref(10);
-
 var ctx;
 
 onMounted(() => {
@@ -92,164 +120,203 @@ onMounted(() => {
     ctx = canvas.getContext("2d");
 })
 
-class Deer {
-    constructor(x, y, direction, type) {
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-        this.energy = 0;
-        this.target = null;
-        this.type = type;
-        this.time_alive = 0;
-    }
-    draw() {
-        if (this.type == 1) {
-            ctx.fillStyle = "red";
-        } else {
-            ctx.fillStyle = "blue";
-        }
-        ctx.fillRect(this.x, this.y, 10, 10);
+// Multipliers
+const fish1Speed = ref(1);
+const fish2Speed = ref(1);
+const fish1EnergyConsumption = ref(1);
+const fish2EnergyConsumption = ref(1);
+const fish1ReproductionRate = ref(1);
+const fish2ReproductionRate = ref(1);
 
-        /*
-        ctx.beginPath();
-        ctx.arc(this.x + 2.5, this.y + 2.5, 100, 0, 2 * Math.PI);
-        ctx.stroke();
-        */
-        
-    }
-    sense() {
-        var closest = null;
-        var closestDistance
-        for (var i = 0; i < food.length; i++) {
-            var dx = food[i].x - this.x;
-            var dy = food[i].y - this.y;
-            var distance = Math.sqrt(dx * dx + dy * dy);
-            if (!closest || distance < closestDistance) {
-                var taken = false;
-                for (var j = 0; j < deer.length; j++) {
-                    if (deer[j] == this) {
-                        continue;
-                    }
-                    if (deer[j].target == food[i] && deer[j].type == this.type) {
-                        taken = true;
-                        break;
-                    }
-                }
-                if (taken) {
-                    continue;
-                }
-                closest = food[i];
-                closestDistance = distance;
-            }
-        }
-        this.target = closest;
-        if (closest) {
-            var dx = closest.x - this.x;
-            var dy = closest.y - this.y;
-            this.direction = Math.atan2(dy, dx) * 180 / Math.PI;
-        }
-    }
-    move() {
-        this.time_alive += 1;
+// Define variables
+const numFish = 50; // number of fish in each species
+const fishSize = 10; // radius of fish
+const maxSpeed = 2; // maximum speed of fish
+const foodSpawnRate = 1; // rate at which food appears
+const foodSize = 5; // size of food
+const foodValue = 10; // value of food to fish
+const fish1Color = '#FF0000'; // color of first species of fish
+const fish2Color = '#0000FF'; // color of second species of fish
 
-        var radians = this.direction * Math.PI / 180;
-        if (this.type == 1) {
-            this.x += Math.cos(radians);
-            this.y += Math.sin(radians);
-        } else {
-            this.x += Math.cos(radians);
-            this.y += Math.sin(radians);
-        }
+// Create arrays to hold fish and food objects
+const fish1 = ref([]);
+const fish2 = ref([]);
+const ticksRun = ref(0);
+const food = ref([]);
+const started = ref(false);
 
-        if (this.time_alive > 100) {this.energy -= 0.1;}
-        if (this.energy < 0) {
-            deer.splice(deer.indexOf(this), 1);
-        }
+// Define Fish class
+class Fish {
+  constructor(x, y, vx, vy, color) {
+    this.x = x;
+    this.y = y;
+    this.vx = vx;
+    this.vy = vy;
+    this.color = color;
+    this.alive = true;
+    this.energy = 100;
+  }
 
-        if (this.x < 0 || this.x > 590 || this.y < 0 || this.y > 590) {
-            this.direction = this.direction + Math.random() * 120 + 120;
-            if (this.direction > 360) {
-                this.direction -= 360;
-            }
-        }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, fishSize, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+
+  move() {
+    // Move fish
+    
+    if (this.color == fish1Color) {
+      this.x += this.vx * fish1Speed.value;
+      this.y += this.vy * fish1Speed.value;
+    } else {
+      this.x += this.vx * fish2Speed.value;
+      this.y += this.vy * fish2Speed.value;
     }
-    eat() {
-        if (this.target) {
-            var dx = this.target.x - this.x;
-            var dy = this.target.y - this.y;
-            var distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 10) {
-                food.splice(food.indexOf(this.target), 1);
-                this.energy += 3;
-                this.target = null;
-            }
-        }
+    // Consume energy
+    
+    if (this.color == fish1Color) {
+      this.energy -= 0.1 * fish1EnergyConsumption.value;
+    } else {
+      this.energy -= 0.1 * fish2EnergyConsumption.value;
     }
-    birth() {
-        if (this.energy >= 9 && this.type == 1) {
-            this.energy -= 4.5;
-            var baby_x = this.x + Math.random() * 10 - 5;
-            var baby_y = this.y + Math.random() * 10 - 5;
-            deer.push(new Deer(baby_x, baby_y, Math.random() * 360, this.type));
-        } 
-        if (this.energy >= 10 && this.type == 2) {
-            this.energy -= 5;
-            var baby_x = this.x + Math.random() * 10 - 5;
-            var baby_y = this.y + Math.random() * 10 - 5;
-            deer.push(new Deer(baby_x, baby_y, Math.random() * 360, this.type));
-        }
+
+    // Bounce off walls
+    if (this.x < fishSize || this.x > 600 - fishSize) {
+      this.vx *= -1;
     }
+    if (this.y < fishSize || this.y > 600 - fishSize) {
+      this.vy *= -1;
+    }
+
+    // Consume food
+    for (let i = 0; i < food.value.length; i++) {
+      const d = Math.sqrt((this.x - food.value[i].x) ** 2 + (this.y - food.value[i].y) ** 2);
+      if (d < fishSize + foodSize) {
+        this.energy += foodValue;
+        food.value.splice(i, 1);
+      }
+    }
+
+    // Die if energy reaches 0
+    if (this.energy <= 0) {
+      this.alive = false;
+    }
+  }
+
+  reproduce() {
+    // Reproduce if enough energy and space
+    
+    if (this.energy >= 200 * fish1ReproductionRate.value && this.color === fish1Color) {
+      let newX = this.x + Math.random() * 2 * fishSize - fishSize;
+      let newY = this.y + Math.random() * 2 * fishSize - fishSize;
+      let newVX = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newVY = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newFish = new Fish(newX, newY, newVX, newVY, this.color);
+      if (this.color === fish1Color) {
+        fish1.value.push(newFish);
+      } else {
+        fish2.value.push(newFish);
+      }
+      this.energy -= 100;
+    } else if (this.energy >= 200  * fish2ReproductionRate.value && this.color === fish2Color) {
+      let newX = this.x + Math.random() * 2 * fishSize - fishSize;
+      let newY = this.y + Math.random() * 2 * fishSize - fishSize;
+      let newVX = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newVY = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newFish = new Fish(newX, newY, newVX, newVY, this.color);
+      if (this.color === fish1Color) {
+        fish1.value.push(newFish);
+      } else {
+        fish2.value.push(newFish);
+      }
+      this.energy -= 100;
+    }
+  }
 }
 
-var deer = []
-for (var i = 0; i < 10; i++) {
-    deer.push(new Deer(Math.random() * 580 + 10, Math.random() * 580 + 10, Math.random() * 360, 1));
+
+// Define Food class
+class Food {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, foodSize, 0, 2 * Math.PI);
+    ctx.fillStyle = '#00FF00';
+    ctx.fill();
+  }
 }
 
-for (var i = 0; i < 10; i++) {
-    deer.push(new Deer(Math.random() * 580 + 10, Math.random() * 580 + 10, Math.random() * 360, 2));
+// Spawn fish and food
+for (let i = 0; i < numFish; i++) {
+  let x1 = Math.random() * 600;
+  let y1 = Math.random() * 600;
+  let vx1 = Math.random() * 2 * maxSpeed - maxSpeed;
+  let vy1 = Math.random() * 2 * maxSpeed - maxSpeed;
+  let f1 = new Fish(x1, y1, vx1, vy1, fish1Color);
+  fish1.value.push(f1);
+
+  let x2 = Math.random() * 600;
+  let y2 = Math.random() * 600;
+  let vx2 = Math.random() * 2 * maxSpeed - maxSpeed;
+  let vy2 = Math.random() * 2 * maxSpeed - maxSpeed;
+  let f2 = new Fish(x2, y2, vx2, vy2, fish2Color);
+  fish2.value.push(f2);
 }
 
-var food = []
-for (var i = 0; i < 100; i++) {
-    food.push({
-        x: Math.random() * 580 + 10,
-        y: Math.random() * 580 + 10
-    });
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, 600, 600);
+
+  // Spawn food
+  if (Math.random() < foodSpawnRate) {
+    let x = Math.random() * 600;
+    let y = Math.random() * 600;
+    let newFood = new Food(x, y);
+    food.value.push(newFood);
+  }
+
+  // Draw and move fish
+  for (let i = 0; i < fish1.value.length; i++) {
+    let f = fish1.value[i];
+    if (f.alive) {
+      f.draw();
+      f.move();
+      f.reproduce();
+    } else {
+      fish1.value.splice(i, 1);
+      i--;
+    }
+  }
+
+  for (let i = 0; i < fish2.value.length; i++) {
+    let f = fish2.value[i];
+    if (f.alive) {
+      f.draw();
+      f.move();
+      f.reproduce();
+    } else {
+      fish2.value.splice(i, 1);
+      i--;
+    }
+  }
+
+  // Draw food
+  for (let i = 0; i < food.value.length; i++) {
+    food.value[i].draw();
+  }
+
+  // Stop if one species dies out
+    if (fish1.value.length === 0 || fish2.value.length === 0) {
+        return;
+    }
+
+  // Update stats
+  ticksRun.value++;
 }
-
-setInterval(function() {
-    ctx.clearRect(0, 0, 600, 600);
-    ctx.fillStyle = "rgb(205,133,63)";
-    ctx.fillRect(0, 0, 600, 600);
-    for (var i = 0; i < food.length; i++) {
-        ctx.fillStyle = "green";
-        ctx.fillRect(food[i].x, food[i].y, 4, 4);
-    }
-
-    for (var i = 0; i < deer.length; i++) {
-        deer[i].sense();
-        deer[i].move();
-        deer[i].eat();
-        deer[i].draw();
-        deer[i].birth();
-    }
-
-    food.push({
-        x: Math.random() * 580 + 10,
-        y: Math.random() * 580 + 10
-    });
-
-    foodCount.value = food.length;
-    deer1Count.value = 0;
-    deer2Count.value = 0;
-    for (var i = 0; i < deer.length; i++) {
-        if (deer[i].type == 1) {
-            deer1Count.value++;
-        } else {
-            deer2Count.value++;
-        }
-    }
-}, 10);
-
 </script>

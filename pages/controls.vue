@@ -47,8 +47,47 @@
             </p>
           </div>
         </div>
+
+        <p class="w-full mt-12 mb-2 text-3xl font-semibold leading-tight text-center">
+            Try it yourself?
+        </p>
+        <div class="w-full mb-4">
+          <div class="h-1 mx-auto gradient w-32 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <div class="flex flex-wrap">
+          <div class="w-full sm:w-1/2 p-6">
+            <p class="text-3xl font-bold leading-none mb-3">
+                Bottom Up Model
+            </p>
+            <input v-model="bottom" type="number" class="w-full border border-gray-400 p-2 mb-4">
+            <input v-model="bottom_other[0]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="bottom_other[1]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="bottom_other[2]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="bottom_other[3]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+          </div>
+          <div class="w-5/6 sm:w-1/2 p-6">
+            <p class="text-3xl font-bold leading-none mb-3">
+                Top Down Model
+            </p>
+            <input v-model="top_other[0]" type="number" class="w-full border border-gray-400 p-2 mb-4">
+            <input v-model="top_other[1]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="top_other[2]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="top_other[3]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="top" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+          </div>
+        </div>
       </div>
     </section>
     <BackButton />
     </div>
 </template>
+
+<script setup>
+const bottom = ref(10000)
+const bottom_other = computed(() => {
+    return [Math.round(bottom.value / 10), Math.round(bottom.value / 100), Math.round(bottom.value / 1000), Math.round(bottom.value / 10000)]
+})
+
+const top = ref(10000)
+const top_other = ['test', 'test', 'test', 'test']
+</script>
