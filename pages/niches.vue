@@ -70,6 +70,9 @@
         <p class="text-center text-md text-gray-600 mb-8">
           Modify the multipliers for the different attributes of the species to see how they affect the outcome of the simulation. Watch as the advantaged species outcompetes the disadvantaged species.
         </p>
+        <p class="text-center text-md text-gray-600 mb-8">
+          There is no limit for the speed multiplier (higher is more advantaged). The energy consumption multiplier should be between 1 and 10 (higher is more disadvantaged). The reproductive rate multiplier should be between 0 and 1 (higher is more advantaged).
+        </p>
 
     <div v-if="!started" class="flex flex-wrap">
         <div class="flex flex-col w-1/3 flex-grow">
@@ -213,31 +216,28 @@ class Fish {
   reproduce() {
     // Reproduce if enough energy and space
     
-    if (this.energy >= 200 * fish1ReproductionRate.value && this.color === fish1Color) {
+    if (this.energy >= 200) {
+    if (this.color === fish1Color) {
+      if (Math.random() < fish1ReproductionRate.value) {
       let newX = this.x + Math.random() * 2 * fishSize - fishSize;
       let newY = this.y + Math.random() * 2 * fishSize - fishSize;
       let newVX = Math.random() * 2 * maxSpeed - maxSpeed;
       let newVY = Math.random() * 2 * maxSpeed - maxSpeed;
       let newFish = new Fish(newX, newY, newVX, newVY, this.color);
-      if (this.color === fish1Color) {
-        fish1.value.push(newFish);
-      } else {
-        fish2.value.push(newFish);
-      }
-      this.energy -= 100;
-    } else if (this.energy >= 200  * fish2ReproductionRate.value && this.color === fish2Color) {
-      let newX = this.x + Math.random() * 2 * fishSize - fishSize;
-      let newY = this.y + Math.random() * 2 * fishSize - fishSize;
-      let newVX = Math.random() * 2 * maxSpeed - maxSpeed;
-      let newVY = Math.random() * 2 * maxSpeed - maxSpeed;
-      let newFish = new Fish(newX, newY, newVX, newVY, this.color);
-      if (this.color === fish1Color) {
-        fish1.value.push(newFish);
-      } else {
-        fish2.value.push(newFish);
-      }
-      this.energy -= 100;
+      fish1.value.push(newFish);
     }
+    } else if (this.color === fish2Color) {
+      if (Math.random() < fish2ReproductionRate.value) {
+      let newX = this.x + Math.random() * 2 * fishSize - fishSize;
+      let newY = this.y + Math.random() * 2 * fishSize - fishSize;
+      let newVX = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newVY = Math.random() * 2 * maxSpeed - maxSpeed;
+      let newFish = new Fish(newX, newY, newVX, newVY, this.color);
+      fish2.value.push(newFish);
+      }
+    }
+    }
+      this.energy -= 100;
   }
 }
 
