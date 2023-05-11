@@ -64,7 +64,12 @@
         </div>
     </div>
     <p class="text-4xl text-center mt-12 font-bold">Simulation</p>
-
+    <div class="w-full mb-4">
+          <div class="h-1 mx-auto gradient w-32 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <p class="text-center text-md text-gray-600 mb-8">
+          Modify the multipliers for the different attributes of the species to see how they affect the outcome of the simulation. Watch as the advantaged species outcompetes the disadvantaged species.
+        </p>
 
     <div v-if="!started" class="flex flex-wrap">
         <div class="flex flex-col w-1/3 flex-grow">
@@ -270,7 +275,6 @@ for (let i = 0; i < numFish; i++) {
 }
 
 function animate() {
-  requestAnimationFrame(animate);
   ctx.clearRect(0, 0, 600, 600);
 
   // Spawn food
@@ -313,10 +317,11 @@ function animate() {
 
   // Stop if one species dies out
     if (fish1.value.length === 0 || fish2.value.length === 0) {
-        return;
+      return;
     }
 
   // Update stats
   ticksRun.value++;
+  requestAnimationFrame(animate);
 }
 </script>

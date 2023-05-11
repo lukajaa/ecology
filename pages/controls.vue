@@ -49,11 +49,14 @@
         </div>
 
         <p class="w-full mt-12 mb-2 text-3xl font-semibold leading-tight text-center">
-            Try it yourself?
+            Try it yourself!
         </p>
         <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-32 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
+        <p class="text-center text-md text-gray-600">
+          Fill in the population for the bottom or top species, depending on the model, and see how the populations of the other species change.
+        </p>
         <div class="flex flex-wrap">
           <div class="w-full sm:w-1/2 p-6">
             <p class="text-3xl font-bold leading-none mb-3">
@@ -69,11 +72,11 @@
             <p class="text-3xl font-bold leading-none mb-3">
                 Top Down Model
             </p>
-            <input v-model="top_other[0]" type="number" class="w-full border border-gray-400 p-2 mb-4">
+            <input v-model="top_other[0]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
             <input v-model="top_other[1]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
             <input v-model="top_other[2]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
             <input v-model="top_other[3]" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
-            <input v-model="top" type="number" class="w-full border border-gray-400 p-2 mb-4" disabled>
+            <input v-model="top" type="number" class="w-full border border-gray-400 p-2 mb-4">
           </div>
         </div>
       </div>
@@ -89,5 +92,7 @@ const bottom_other = computed(() => {
 })
 
 const top = ref(10000)
-const top_other = ['test', 'test', 'test', 'test']
+const top_other = computed(() => {
+  return [top.value, Math.round(top.value / 10), top.value, Math.round(top.value / 10)]
+})
 </script>
