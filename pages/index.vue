@@ -146,8 +146,51 @@
     </svg>
     <section class="container mx-auto text-center py-6">
       <h3 class="my-4 text-lg leading-tight">
-        Created by Lucas Chang | Sources
+        Created by Lucas Chang | <span @click="sourcesModal = true">Sources</span>
       </h3>
     </section>
+    <div v-if="sourcesModal" class="w-screen h-screen top-0 fixed" style="background-color: rgba(0, 0, 0, 0.5);">
+      <!-- center modal -->
+      <div class="w-1/2 h-1/2 bg-white rounded-lg shadow-lg p-8 m-auto relative mt-48">
+        <!-- modal close button -->
+        <button @click="sourcesModal = false" class="absolute top-0 right-0 mt-4 mr-4">
+          <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+            <path
+              d="M18 1.5L16.5 0 9 7.5 1.5 0 0 1.5 7.5 9 0 16.5 1.5 18 9 10.5 16.5 18 18 16.5 10.5 9z"
+            ></path>
+          </svg>
+        </button>
+        <div class="text-left text-black opacity-100">
+          <h3 class="text-2xl">Sources</h3>
+          <ul class="list-disc list-inside">
+            <li class=mt-1>
+              <a class="sources_link" href="https://www.khanacademy.org/science/ap-college-environmental-science/x0b0e430a38ebd23f:the-living-world-ecosystems-and-biodiversity/x0b0e430a38ebd23f:intro-to-biodiversity-and-biogeography/a/species-diversity-and-ecosystem-resilience" target="_blank">https://www.khanacademy.org/science/ap-college-environmental-science/x0b0e430a38ebd23f:the-living-world-ecosystems-and-biodiversity/x0b0e430a38ebd23f:intro-to-biodiversity-and-biogeography/a/species-diversity-and-ecosystem-resilience</a>
+            </li>
+            <li class=mt-1>
+              <a class="sources_link" href="https://www.khanacademy.org/science/ap-biology/ecology-ap/community-ecology/a/niches-competition" target="_blank">https://www.khanacademy.org/science/ap-biology/ecology-ap/community-ecology/a/niches-competition</a>
+            </li>
+            <li class=mt-1>
+              <a class="sources_link" href="https://www.jstor.org/stable/24873136" target="_blank">https://www.jstor.org/stable/24873136</a>
+            </li>
+            <li class=mt-1>
+              <a class="sources_link" href="https://en.wikipedia.org/wiki/Trophic_cascade" target="_blank">https://en.wikipedia.org/wiki/Trophic_cascade</a>
+            </li>
+            <li class=mt-1>
+              <a class="sources_link" href="https://www.britannica.com/science/ecological-succession" target="_blank">https://www.britannica.com/science/ecological-succession</a>
+            </li>
+            <li class=mt-1>
+              <a class="sources_link" href="https://www.britannica.com/science/food-web" target="_blank">https://www.britannica.com/science/food-web</a>
+            </li>
+            <li class=mt-1>
+              Biology 2 Textbook Chapter 48
+            </li>
+          </ul>
+          </div>
+          </div>
+    </div>
 </div>
 </template>
+
+<script setup>
+const sourcesModal = ref(false);
+</script>

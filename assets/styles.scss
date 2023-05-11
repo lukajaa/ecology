@@ -7,3 +7,12 @@
 .gradient {
   background: linear-gradient(90deg, #16a34a 0%, #2dd4bf 100%);
 }
+
+a {
+  color: #2dd4bf;
+}
+
+.sources_link:hover {
+  color: #16a34a;
+  text-decoration: underline;
+}
