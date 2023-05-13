@@ -11,9 +11,11 @@
           <p class="leading-normal text-2xl mb-8">
             Explore how ecosystems are structured through interactive simulations!
           </p>
-          <button class="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg transition hover:scale-105 ease-in-out">
-            Lab Report
-          </button>
+          <NuxtLink to="/lab">
+            <button class="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg transition hover:scale-105 ease-in-out">
+              Lab Report
+            </button>
+          </NuxtLink>
         </div>
         <!--Right Col-->
         <div class="w-full md:w-3/5">

@@ -56,7 +56,7 @@
         </div>
         <p class="text-center text-gray-600">We can calculate the diversity of an ecosystem using the shannon diversity index</p>
 
-        <img class="w-full max-w-xs my-8 mx-auto" src="~/assets/shannon.png" />
+        <img class="w-full max-w-xs my-8 mx-auto" src="~/assets/images/shannon.png" />
 
         <p class="text-center text-gray-600">
           Where p<sub>i</sub> is the proportion of each species in the ecosystem.
