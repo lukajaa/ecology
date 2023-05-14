@@ -9,7 +9,7 @@
           <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
         <p class="w-full my-2 text-md text-gray-600 font-bold leading-tight text-center">
-            The more diverse an ecosystem is, the more stable it is and more resistant it is to invasive predators
+            The more diverse an ecosystem is, the more stable it is and more resistant it is to invasive predators. Diversity is also important for the ecosystem to be able to recover from natural disasters.
         </p>
 
         <p class="w-full mt-12 mb-2 text-3xl font-semibold leading-tight text-center">
@@ -19,7 +19,7 @@
           <div class="h-1 mx-auto gradient w-32 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
         <p class="w-full my-2 text-md text-gray-600 font-bold leading-tight text-center">
-            Species diversity is the variety of different organisms in an ecosystem; it can be hard to measure due to very rare/microspoic and organisms
+            Species diversity is the variety of different organisms in an ecosystem; it can be hard to measure due to very rare/microscopic and organisms
         </p>
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">

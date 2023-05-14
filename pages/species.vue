@@ -41,7 +41,7 @@
                 Keystone Species
             </p>
             <p class="text-gray-600 mb-8">
-                Keystone species are not dominant, but they usually occupy a specific niche that makes them important
+                Keystone species are not dominant, but they usually occupy a specific niche that makes them important. Their extinction can cause a chain reaction of disturbance in the ecosystem.
             </p>
           </div>
         </div>

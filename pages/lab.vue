@@ -1,5 +1,5 @@
 <template>
-    <div class="font-mono py-10 mx-auto md:w-6/12">
+    <div class="font-mono py-10 px-4 mx-auto md:w-6/12">
         <p class="text-3xl text-center">Simulating Competitive Exclusion (Gause's Law)</p>
         <p class="text-xl text-center">Lucas Chang</p>
         <p class="text-lg mt-4 font-semibold text-center">Introduction/Background</p>

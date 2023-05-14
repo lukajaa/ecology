@@ -88,11 +88,11 @@
 <script setup>
 const bottom = ref(10000)
 const bottom_other = computed(() => {
-    return [Math.round(bottom.value / 10), Math.round(bottom.value / 100), Math.round(bottom.value / 1000), Math.round(bottom.value / 10000)]
+    return [Math.round(bottom.value / 10 + Math.random() * (bottom.value / 10)), Math.round(bottom.value / 100 + Math.random() * (bottom.value / 10)), Math.round(bottom.value / 1000 + Math.random() * (bottom.value / 10)), Math.round(bottom.value / 10000 + Math.random() * (bottom.value / 100))]
 })
 
 const top = ref(10000)
 const top_other = computed(() => {
-  return [top.value, Math.round(top.value / 10), top.value, Math.round(top.value / 10)]
+  return [Math.round(top.value + Math.random() * (top.value / 10)), Math.round(top.value / 10 + Math.random() * (top.value / 10)), Math.round(top.value + Math.random() * (top.value / 10)), Math.round(top.value / 10 + Math.random() * (top.value / 10))]
 })
 </script>

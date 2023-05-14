@@ -63,7 +63,7 @@
             <p class="text-lg text-center rounded-lg mt-4">A realized niche is the niche that the organism actually occupies due to competition or other factors</p>
         </div>
     </div>
-    <p class="text-4xl text-center mt-12 font-bold">Simulation</p>
+    <p class="text-4xl text-center mt-12 font-bold">Simulation (May not work in live verson!)</p>
     <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-32 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
