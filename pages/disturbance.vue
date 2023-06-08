@@ -57,7 +57,7 @@
               <img src="~/assets/svgs/herbivory.svg" class="w-full h-48 rounded-lg" />
                 
                 <p class="text-2xl text-center font-bold rounded-lg mt-8">Natural</p>
-                <p class="text-md text-center rounded-lg font-normal text-gray-600">Natural disasters such as volcanoes, tsunamis, and hurricans are the largest forms of ecological disturbance</p>
+                <p class="text-md text-center rounded-lg font-normal text-gray-600">Natural disasters such as volcanoes, tsunamis, and hurricanes are the largest forms of ecological disturbance</p>
             </div>
 
             <div class="w-full">

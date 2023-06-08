@@ -2,7 +2,7 @@
   <div class="leading-normal tracking-normal text-white gradient">
     <!--Hero-->
     <div class="bg-white text-center mt-24 md:mt-60 text-black">
-      <h1 class="mt-4 mb-2 text-7xl font-black">
+      <h1 class="mt-4 mb-2 text-5xl md:text-7xl font-black">
         Community Ecology
       </h1>
       <img src="~/assets/svgs/underline.svg" class="mx-auto" />
