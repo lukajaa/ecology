@@ -12,6 +12,7 @@
     "@nuxtjs/tailwindcss": "^6.6.6",
     "@types/node": "^18",
     "nuxt": "^3.4.2",
+    "nuxt-gtag": "^0.5.7",
     "nuxt-icon": "^0.4.0"
   },
   "dependencies": {
